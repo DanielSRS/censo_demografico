@@ -1,15 +1,16 @@
 # ----------------------------------------------------------------------------------------------------------------------
 #                                                   Importar arquivos
 # ----------------------------------------------------------------------------------------------------------------------
-arquivo = open('regioes.txt', 'r')
+arquivo = open('testes/regioes.txt', 'r')  # usando diretorio de testes, para não modificar os arquivos
 regioes = arquivo.readlines()
 arquivo.close()
 
-arquivo = open('tecnicosIBGE.txt', 'r')
+arquivo = open('testes/tecnicosIBGE.txt', 'r')  # usando diretorio de testes, para não modificar os arquivos
 tecnicosIBGE = arquivo.readlines()
 arquivo.close()
-
-
+print(len(tecnicosIBGE))
+print(tecnicosIBGE[len(tecnicosIBGE) - 1])
+print(tecnicosIBGE)
 # ______________________________________________________________________________________________________________________
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -22,11 +23,25 @@ while True:
     if resposta == 'b':
         resposta = 0
         break
-
+    elif resposta == 'a':  # Cadastro de tecnicos. Precisa ser revisado.
+        nome = input('Nome do técnico [Somente primeiro nome] \n\n\tResposta: ')
+        sexo = input('Sexo [F para feminino e M para masculino] \n\n\tResposta: ')
+        nascimento = input('Data de nascimento [No formato DD/MM/AAAA] \n\n\tResposta: ')
+        matricula = 'T' + str(len(tecnicosIBGE) - 1)
+        tecnico = matricula + ';' + nome + ';' + sexo + ';' + nascimento + '\n'
+        if tecnicosIBGE[len(tecnicosIBGE) - 1] == ' \n' or tecnicosIBGE[len(tecnicosIBGE) - 1] == '\n':
+            tecnicosIBGE[len(tecnicosIBGE) - 1] = tecnico
+            tecnicosIBGE.append('\n')
+            print('nao')
+        else:
+            tecnicosIBGE.append(tecnico)
+            tecnicosIBGE.append('\n')
+        print(tecnicosIBGE)
+        
 # ______________________________________________________________________________________________________________________
 
 # ----------------------------------------------------------------------------------------------------------------------
-#                                                   Menu estatístticas
+#                                                   Menu estatísticas
 # ----------------------------------------------------------------------------------------------------------------------
 while True:
     print('1 - Números de domicílios utilizados para a coleta')

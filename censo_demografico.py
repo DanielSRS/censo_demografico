@@ -19,6 +19,12 @@ def escreverArquivo(lista: list, nomeArquivo: str):  # Escrever dados num arquiv
     arquivo.writelines(lista)
     arquivo.close()
 
+def buscarNaLista(nome: str, lista: list):  # Função de busca
+    for contador in range(len(lista)):
+        if lista[contador].find(nome) != -1:
+            return True
+    return False
+
 def main():
 
     # ------------------------------------------------------------------------------------------------------------------

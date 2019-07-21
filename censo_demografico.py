@@ -14,6 +14,10 @@ def matriculaTecnico(nome: str, sexo: str, nascimento: str, lista: list):  # cad
         lista.append(tecnico)
         lista.append('\n')
 
+def escreverArquivo(lista: list, nomeArquivo: str):  # Escrever dados num arquivo
+    arquivo = open(nomeArquivo, 'w')
+    arquivo.writelines(lista)
+    arquivo.close()
 
 def main():
 

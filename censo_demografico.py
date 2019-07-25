@@ -47,6 +47,9 @@ def main():
         resposta = input('\nSelecione uma opção: ')
         if resposta == 'b':
             resposta = 0
+            tec = input('Digite o nome do tecnico: ')
+            if buscarNaLista(tec, tecnicosIBGE):
+                print('Tecnico valido')
             break
         elif resposta == 'a':  # Cadastro de tecnicos. Precisa ser revisado.
             nome = input('Nome do técnico [Somente primeiro nome] \n\n\tResposta: ')
@@ -55,6 +58,48 @@ def main():
             matriculaTecnico(nome, sexo, nascimento, tecnicosIBGE)
             print(lista)  #  Apenas para verificação. Apagar
             
+    # __________________________________________________________________________________________________________________
+
+    # ------------------------------------------------------------------------------------------------------------------
+    #                                                   Pesquisa
+    # ------------------------------------------------------------------------------------------------------------------
+    print('1 - Importar arquivo de respostas: ')
+    print('2 - Realizar pesquisa: ')
+    print('3 - Cadastrar novo tecnico: ')
+    
+    while True:
+        login = input('Digite a matricula do tecnico: ')
+        print('IDENTIFICAÇÃO DO DOMICÍLIO\n\n')
+        resposta = input('MUNICÍPIO (Código IBGE):')
+        resposta += ';'
+        resposta += input('CEP')
+        resposta += ';'
+        print('ESPÉCIES DE DOMICÍLIO OCUPADO\n\n')
+        print('1 - DOMICÍLIO PARTICULAR PERMANENTE OCUPADO\n5 - DOMICÍLIO PARTICULAR IMPROVISADO OCUPADO\n6 - 
+            DOMICÍLIO COLETIVO COM MORADOR')
+        resposta += input('')
+        resposta += ';'
+        print(('TIPO\n\n')
+        print('11 – CASA\n12 – CASA DE VILA OU EM CONDOMÍNIO\n13 – APARTAMENTO\n14 – HABITAÇÃO EM: CASA DE 
+            CÔMODOS, CORTIÇO 63 – ALOJAMENTO DE TRABALHADORES COM MORADOR OU CABEÇA DE PORCO\n15 – OCA OU MALOCA\n51 – TENDA OU BARRACA\n52 – DENTRO DO ESTABELECIMENTO\n53 – OUTRO (VAGÃO, TRAILER, GRUTA, ETC.)\n61 – ASILO, ORFANATO E SIMILARES COM MORADOR\n62 – HOTEL, PENSÃO E SIMILARES COM MORADOR\n63 – ALOJAMENTO DE TRABALHADORES COM MORADOR\n64 – PENITENCIÁRIA, PRESÍDIO OU CASA DE DETENÇÃO COM MORADOR\n65 – OUTRO COM MORADOR\n\n')
+        resposta += input('')
+        resposta += ';'
+        print('PARA DOMICÍLIOS PARTICULARES PERMANENTES OCUPADOS CARACTERÍSTICAS DO DOMICÍLIO\n\n')
+        print('ESTE DOMICÍLIO É\n\n')
+        print('1 - PRÓPRIO DE ALGUM MORADOR - JÁ PAGO\n2 - PRÓPRIO DE ALGUM MORADOR - AINDA PAGANDO\n3 - 
+            ALUGADO3 - ALUGADO\n4 - CEDIDO POR EMPREGADOR\n5 - CEDIDO DE OUTRA FORMA\n6 - OUTRA CONDIÇÃO')
+        resposta += input('')
+        resposta += ';'
+        print('QUANTOS BANHEIROS DE USO EXCLUSIVO DOS MORADORES EXISTEM NESTE DOMICÍLIO? (Inclusive os 
+            localizados no terreno ou na propriedade)\n\n')
+        print('BANHEIRO(S) COM CHUVEIRO (OU BANHEIRA) E VASO SANITÁRIO (OU PRIVADA)')
+        resposta += input('')
+        resposta += ';'
+        print('UTILIZA SANITÁRIO OU BURACO PARA DEJEÇÕES, INCLUSIVE OS LOCALIZADOS NO TERRENO OU NA 
+            PROPRIEDADE? (Cercado por paredes de qualquer material)\n')
+        resposta += input('')
+        resposta += ';'
+
     # __________________________________________________________________________________________________________________
 
     # ------------------------------------------------------------------------------------------------------------------

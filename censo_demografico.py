@@ -1,22 +1,24 @@
+from copy import deepcopy
+
 def lerArquivo(nome: str):  # Função para ler um arquivo e retornar seus dados numa lista
     arquivo = open(nome, 'r')
     aux = arquivo.readlines()
     arquivo.close()
     return aux
 
-def matriculaTecnico(nome: str, sexo: str, nascimento: str, lista: list):  # cadastra novo tecnico
-    matricula = 'T' + str(len(lista) - 1)
+def matriculaTecnico(nome: str, sexo: str, nascimento: str, listaTecnicosCadastrados: list):  # cadastra novo tecnico
+    matricula = 'T' + str(len(listaTecnicosCadastrados) - 1)  # Gera numero de matricula avaliando cadastros preexistentes
     tecnico = matricula + ';' + nome + ';' + sexo + ';' + nascimento + '\n'
-    if lista[len(lista) - 1] == ' \n' or lista[len(lista) - 1] == '\n':
-        lista[len(lista) - 1] = tecnico
-        lista.append('\n')
+    if listaTecnicosCadastrados[len(listaTecnicosCadastrados) - 1] == ' \n' or listaTecnicosCadastrados[len(listaTecnicosCadastrados) - 1] == '\n':
+        listaTecnicosCadastrados[len(listaTecnicosCadastrados) - 1] = tecnico
+        listaTecnicosCadastrados.append('\n')
     else:
         lista.append(tecnico)
         lista.append('\n')
 
-def escreverArquivo(lista: list, nomeArquivo: str):  # Escrever dados num arquivo
+def escreverArquivo(dadosParaEscrita: list, nomeArquivo: str):  # Escrever dados num arquivo
     arquivo = open(nomeArquivo, 'w')
-    arquivo.writelines(lista)
+    arquivo.writelines(dadosParaEscrita)
     arquivo.close()
 
 def buscarNaLista(nome: str, lista: list):  # Função de busca
@@ -25,6 +27,35 @@ def buscarNaLista(nome: str, lista: list):  # Função de busca
             return True
     return False
 
+def separarDados(dadosDoArquivo: list):  # Separa informações contidas na mesma string 
+    contarLetrasPalavra = 0
+    matrizDadosAruivo: list = [] 
+    Laux = [] 
+    for contadorTamanhoDadosArquivo in range (len(dadosDoArquivo)):
+        dadosDeUmCadastro: str = dadosDoArquivo[contadorTamanhoDadosArquivo]
+        for letra in dadosDeUmCadastro:
+            if letra != ';' and contarLetrasPalavra == 0:
+                v = letra
+            #   print(v)
+            elif letra != ';' and letra != '\n' and contarLetrasPalavra != 0:
+                v = v + letra
+            #    print(v)
+            elif letra == ';' and contarLetrasPalavra != 0:
+                Laux.append(v)
+                contarLetrasPalavra == -1
+                v = ''
+            elif letra == '\n':
+                Laux.append(v)
+                matrizDadosAruivo.append(deepcopy(Laux))
+                Laux [:] = []
+                contarLetrasPalavra = -1
+            contarLetrasPalavra = contarLetrasPalavra + 1
+        #  print(v)
+#    for i in matrizDadosAruivo:
+#        print(i)
+    return matrizDadosAruivo
+
+
 def main():
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -32,6 +63,7 @@ def main():
     # ------------------------------------------------------------------------------------------------------------------
     regioes = lerArquivo('testes/regioes.txt')  # usando diretorio de testes, para não modificar os arquivos
     tecnicosIBGE = lerArquivo('testes/tecnicosIBGE.txt')
+    exemploPesquisa = lerArquivo('testes/exemploPesquisa.txt')
     
     print(len(tecnicosIBGE))
     print(tecnicosIBGE[len(tecnicosIBGE) - 1])
@@ -87,8 +119,28 @@ def main():
         print('9 - Encerrar aplicação:')
         resposta = input('\nDigite sua escolha: ')
         if resposta == '1':
+            print('Números de domicílios utilizados para a coleta: {}'.format(len(exemploPesquisa) - 1))
             break
         elif resposta == '2':
+            domicilioParticularPago: int = 0
+            domicilioParticularSendoPago: int = 0
+            domicilioParticularAlugado: int = 0
+
+            for i in separarDados(exemploPesquisa):  # Para domicilios pagos
+                if i[3] == '1' and i[5] == '1':
+                    domicilioParticularPago += 1
+
+            for i in separarDados(exemploPesquisa):  # Para domicilios sendo pagos
+                if i[3] == '1' and i[5] == '2':
+                    domicilioParticularSendoPago += 1
+
+            for i in separarDados(exemploPesquisa):  # Para domicilios alugados
+                if i[3] == '1' and i[5] == '3':
+                    domicilioParticularAlugado += 1
+
+            print('Numero de domicilios particulares que ja estão pagos: {}'.format(domicilioParticularPago))
+            print('Numero de domicilios particulares que estão sendo pagos: {}'.format(domicilioParticularSendoPago))
+            print('Numero de domicilios particulares alugados: {}'.format(domicilioParticularAlugado))
             break
         elif resposta == '3':
             break
@@ -107,7 +159,5 @@ def main():
 
     # __________________________________________________________________________________________________________________
 
-#  if __name__ == '__main__':
-#      main()
 
 main()

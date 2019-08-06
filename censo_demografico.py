@@ -29,7 +29,7 @@ def buscarNaLista(nome: str, lista: list):  # Função de busca
 
 def separarDados(dadosDoArquivo: list):  # Separa informações contidas na mesma string 
     contarLetrasPalavra = 0
-    matrizDadosAruivo: list = [] 
+    matrizDadosArquivo: list = [] 
     Laux = [] 
     for contadorTamanhoDadosArquivo in range (len(dadosDoArquivo)):
         dadosDeUmCadastro: str = dadosDoArquivo[contadorTamanhoDadosArquivo]
@@ -46,14 +46,14 @@ def separarDados(dadosDoArquivo: list):  # Separa informações contidas na mesm
                 v = ''
             elif letra == '\n':
                 Laux.append(v)
-                matrizDadosAruivo.append(deepcopy(Laux))
+                matrizDadosArquivo.append(deepcopy(Laux))
                 Laux [:] = []
                 contarLetrasPalavra = -1
             contarLetrasPalavra = contarLetrasPalavra + 1
         #  print(v)
-#    for i in matrizDadosAruivo:
+#    for i in matrizDadosArquivo:
 #        print(i)
-    return matrizDadosAruivo
+    return matrizDadosArquivo
 
 
 def main():
@@ -88,7 +88,7 @@ def main():
             sexo = input('Sexo [F para feminino e M para masculino] \n\n\tResposta: ')
             nascimento = input('Data de nascimento [No formato DD/MM/AAAA] \n\n\tResposta: ')
             matriculaTecnico(nome, sexo, nascimento, tecnicosIBGE)
-            print(lista)  #  Apenas para verificação. Apagar
+            print(tecnicosIBGE)  #  Apenas para verificação. Apagar
             
     # __________________________________________________________________________________________________________________
 

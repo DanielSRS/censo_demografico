@@ -143,6 +143,37 @@ def main():
             print('Numero de domicilios particulares alugados: {}'.format(domicilioParticularAlugado))
             break
         elif resposta == '3':
+            banheiroPorCidade = [['codigoDaCidade', 'quantidadeDeBanheiros']]
+            semBanheiroPorCidade = [['codigoDaCidade', 'quantidadeDeSemBanheiros']]
+            banheiroAuxiliar = 0
+            for i in separarDados(exemploPesquisa):
+                temOuNaoBanheiro = i[6]
+                if temOuNaoBanheiro.isdecimal():
+                    temOuNaoBanheiro = int(temOuNaoBanheiro)
+                    if 0 < temOuNaoBanheiro <= 9:
+                        cidade = i[1]
+                        for j in banheiroPorCidade:
+                            if j[0] == cidade:
+                                j[1] += 1
+                                banheiroAuxiliar += 1
+                        if banheiroAuxiliar == 0:
+                            banheiroPorCidade.append([cidade, 1])
+                        banheiroAuxiliar = 0
+                    else: 
+                        cidade = i[1]
+                        for j in semBanheiroPorCidade:
+                            if j[0] == cidade:
+                                j[1] += 1
+                                banheiroAuxiliar += 1
+                        if banheiroAuxiliar == 0:
+                            semBanheiroPorCidade.append([cidade, 1])
+                        banheiroAuxiliar = 0
+            print(len(banheiroPorCidade))
+            print(len(semBanheiroPorCidade))
+            for p in banheiroPorCidade:
+                print(p)
+            for t in semBanheiroPorCidade:
+                print(t)
             break
         elif resposta == '4':
             break

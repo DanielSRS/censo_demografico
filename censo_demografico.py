@@ -64,6 +64,20 @@ def separarDados(dadosDoArquivo: list):  # Separa informações contidas na mesm
 #        print(i)
     return matrizDadosArquivo
 
+def regiaoDoPais(cidade: str, regioes: list):
+    for k in separarDados(regioes):
+        if k[0] == cidade:
+            estado = k[3]
+            if estado == 'MA' or estado == 'PI' or estado == 'CE' or estado == 'RN' or estado == 'PB' or estado == 'PE' or estado == 'AL' or estado == 'SE' or estado == 'BA':
+                return 'nordeste'
+            elif estado == 'AM' or estado == 'RR' or estado == 'AP' or estado == 'PA' or estado == 'TO' or estado == 'RO' or estado =='AC':
+                return 'norte'
+            elif estado == 'SP' or estado == 'RJ' or estado == 'ES' or estado == 'MG':
+                return 'sudeste'
+            elif estado == 'DF' or estado == 'GO' or estado == 'MT' or estado == 'MS':
+                return 'centro-oeste'
+            elif estado == 'PR' or estado == 'SC' or estado == 'RS':
+                return 'sul'
 
 def main():
 
@@ -323,7 +337,44 @@ def main():
             break
         elif resposta == '6':
             break
+        
+        # --------------------------------------------------------------------------------------------------------------
+
         elif resposta == '7':
+            norte = nordeste = centroOeste = sul = sudeste = nem = 0
+            for i in separarDados(exemploPesquisa):
+                cidade = i[1]
+                reg = regiaoDoPais(cidade, regioes)
+                if reg == 'norte':
+                    norte += 1
+                elif reg ==  'nordeste':
+                    nordeste += 1
+                elif reg == 'sudeste':
+                    sudeste += 1
+                elif reg == 'sul':
+                    sul += 1
+                elif reg == 'centro-oeste':
+                    centroOeste += 1 
+                
+            maisComum = 'nenhum'
+            if norte > nem:
+                nem = norte
+                maisComum = 'norte'
+            if nordeste > nem:
+                nem = nordeste
+                maisComum = 'nordeste'
+            if sudeste > nem:
+                nem = sudeste
+                maisComum = 'sudeste'
+            if sul > nem:
+                nem = sul
+                maisComum = 'sul'
+            if centroOeste > nem:
+                nem = centroOeste
+                maisComum = 'Centro-oeste'
+                
+            print('A regiaõ com mais cidades: ' + maisComum)
+
             break
         elif resposta == '8':
             break

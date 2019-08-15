@@ -24,6 +24,12 @@ def escreverArquivo(dadosParaEscrita: list, nomeArquivo: str):  # Escrever dados
     arquivo.writelines(dadosParaEscrita)
     arquivo.close()
 
+def encontrarCidade(codigoIBGE: str, regioes: list):
+    for h in separarDados(regioes):
+        if h[0] == codigoIBGE:
+            return h[1]
+    return 'cidade'
+
 def buscarNaLista(nome: str, lista: list):  # Função de busca
     for contador in range(len(lista)):
         if lista[contador].find(nome) != -1:
@@ -68,9 +74,9 @@ def main():
     tecnicosIBGE = lerArquivo('testes/tecnicosIBGE.txt')
     exemploPesquisa = lerArquivo('testes/exemploPesquisa.txt')
     
-    print(len(tecnicosIBGE))
-    print(tecnicosIBGE[len(tecnicosIBGE) - 1])
-    print(tecnicosIBGE)
+#    print(len(tecnicosIBGE))
+#    print(tecnicosIBGE[len(tecnicosIBGE) - 1])
+#    print(tecnicosIBGE)
     # __________________________________________________________________________________________________________________
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -174,7 +180,8 @@ def main():
             print(len(banheiroPorCidade))
             print(len(semBanheiroPorCidade))
             for p in banheiroPorCidade:
-                print(p)
+                cdd = encontrarCidade(p[0], regioes)
+                print(cdd + ': ' + str(p[1]))
             for t in semBanheiroPorCidade:
                 print(t)
             break
@@ -305,7 +312,9 @@ def main():
                 if forma == 10:
                     forma =  'POÇO OU NASCENTE FORA DA ALDEIA'
                 
-                print(t[0] + ': ' + forma)
+                g = encontrarCidade(t[0], regioes)
+#                print((g))
+                print(g + ': ' + forma)
             break
         
         # --------------------------------------------------------------------------------------------------------------

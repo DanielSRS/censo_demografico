@@ -335,7 +335,39 @@ def main():
         
         elif resposta == '5':
             break
+
+        # --------------------------------------------------------------------------------------------------------------
+
         elif resposta == '6':
+            branca = preta = parda = amarela = indigena = 0
+            quantidadeDeIndividuos = 0
+            for b in separarDados(exemploPesquisa):
+                
+                if b[18].isdecimal():
+                    corDoIndividuo = int(b[18])
+                    quantidadeDeIndividuos += 1
+                    if corDoIndividuo == 1:
+                        branca += 1
+                    elif corDoIndividuo == 2:
+                        preta += 1
+                    elif corDoIndividuo == 3:
+                        amarela += 1
+                    elif corDoIndividuo == 4:
+                        parda += 1
+                    elif corDoIndividuo == 5:
+                        indigena += 1
+            
+            branca = (branca * 100) / quantidadeDeIndividuos
+            preta = (preta * 100) / quantidadeDeIndividuos
+            amarela = (amarela * 100) / quantidadeDeIndividuos
+            parda = (parda * 100) / quantidadeDeIndividuos
+            indigena = (indigena * 100) / quantidadeDeIndividuos
+
+            print(str(branca) + ' % branca')
+            print(str(preta) + ' % preta')
+            print(str(parda) + ' % parda')
+            print(str(amarela) + ' % amarela')
+            print(str(indigena) + ' % indigena')
             break
         
         # --------------------------------------------------------------------------------------------------------------
@@ -379,7 +411,7 @@ def main():
         elif resposta == '8':
             break
         elif resposta == '9':
-            break
+            exit()
 
     # __________________________________________________________________________________________________________________
 

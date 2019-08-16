@@ -189,169 +189,12 @@ def main():
 
         elif resposta == '4':  # Forma mais comum de abastecimeno de agua por cidade
             
-            aguaPorCidade = [['codigoDaCidade', 'REDE GERAL DE DISTRIBUIÇÃO', 'POÇO OU NASCENTE NA PROPRIEDADE', 
-                'POÇO OU NASCENTE FORA DA PROPRIEDADE', 'CARRO-PIPA', 'ÁGUA DA CHUVA ARMAZENADA EM CISTERNA', 
-                'ÁGUA DA CHUVA ARMAZENADA DE OUTRA FORMA', 'RIOS, AÇUDES, LAGOS E IGARAPÉS', 'OUTRA', 
-                ' POÇO OU NASCENTE NA ALDEIA', 'POÇO OU NASCENTE FORA DA ALDEIA']]
-            
-            for i in exemploPesquisa:
-
-                forma = i[9]
-                if forma.isdecimal():
-                    forma = int(forma)
-                    
-                    cidade = i[1]
-                    l = 0
-                    max = len(aguaPorCidade)
-                    #while l <= max:
-                    for j in aguaPorCidade:
-                        #  j = aguaPorCidade[l]
-                        if j[0] == cidade:
-                            if forma == 1:
-                                j[forma] += 1
-                                break
-                            if forma == 2:
-                                j[forma] += 1
-                                break
-                            if forma == 3:
-                                j[forma] += 1
-                                break
-                            if forma == 4:
-                                j[forma] += 1
-                                break
-                            if forma == 5:
-                                j[forma] += 1
-                                break
-                            if forma == 6:
-                                j[forma] += 1
-                                break
-                            if forma == 7:
-                                fj[forma] += 1
-                                break
-                            if forma == 8:
-                                j[forma] += 1
-                                break
-                            if forma == 9:
-                                j[forma] += 1
-                                break
-                            if forma == 10:
-                                j[forma] += 1
-                                break
-                        else:
-                            if forma == 1:
-                                aguaPorCidade.append([cidade, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-                                break
-                            if forma == 2:
-                                aguaPorCidade.append([cidade, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0])
-                                break
-                            if forma == 3:
-                                aguaPorCidade.append([cidade, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
-                                break
-                            if forma == 4:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
-                                break
-                            if forma == 5:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0])
-                                break
-                            if forma == 6:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0])
-                                break
-                            if forma == 7:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
-                                break
-                            if forma == 8:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
-                                break
-                            if forma == 9:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0])
-                                break
-                            if forma == 10:
-                                aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
-                                break
-            
-            del(aguaPorCidade[0]) # o primeiro elemento nao e'util
-            for t in aguaPorCidade:
-                vmaior = t[1]
-                if t[2] > vmaior:
-                    maior = 2
-                if t[3] > vmaior:
-                    maior = 3
-                if t[4] > vmaior:
-                    maior = 4
-                if t[5] > vmaior:
-                    maior = 5
-                if t[6] > vmaior:
-                    maior = 6
-                if t[7] > vmaior:
-                    maior = 7
-                if t[8] > vmaior:
-                    maior = 8
-                if t[9] > vmaior:
-                    maior = 9
-                if t[10] > vmaior:
-                    maior = 10
-
-                forma = maior
-
-                if forma == 1:
-                    forma =  'REDE GERAL DE DISTRIBUIÇÃO'
-                if forma == 2:
-                    forma =  'POÇO OU NASCENTE NA PROPRIEDADE'
-                if forma == 3:
-                    forma =  'POÇO OU NASCENTE FORA DA PROPRIEDADE'
-                if forma == 4:
-                    forma =  'CARRO-PIPA'
-                if forma == 5:
-                    forma =  'ÁGUA DA CHUVA ARMAZENADA EM CISTERNA'
-                if forma == 6:
-                    forma =  'ÁGUA DA CHUVA ARMAZENADA DE OUTRA FORMA'
-                if forma == 7:
-                    forma =  'RIOS, AÇUDES, LAGOS E IGARAPÉS'
-                if forma == 8:
-                    forma =  'OUTRA'
-                if forma == 9:
-                    forma =  ' POÇO OU NASCENTE NA ALDEIA'
-                if forma == 10:
-                    forma =  'POÇO OU NASCENTE FORA DA ALDEIA'
-                
-                g = encontrarCidade(t[0], regioes)
-#                print((g))
-                print(g + ': ' + forma)
-            
+            formaMaisCommumAgua(exemploPesquisa, regioes)
         
         # --------------------------------------------------------------------------------------------------------------
         
         elif resposta == '5':
-            casasComEnergia = [['cidade', 'possuiEnergia', 'naoPossuiEnergia']]
-            for x in exemploPesquisa:
-                
-                cidade = x[1]
-                if x[11].isdecimal():
-                    possuienergia = int(x[11])
-                    for c in casasComEnergia:
-                        if c[0] == cidade:
-                            if possuienergia == 1 or possuienergia == 2:
-                                c[1] += 1
-                                break
-                            elif possuienergia == 3:
-                                c[2] += 1
-                                break
-                        else:
-                            if possuienergia == 1 or possuienergia == 2:
-                                casasComEnergia.append([cidade, 1, 0])
-                                break
-                            elif possuienergia == 3:
-                                casasComEnergia.append([cidade, 0, 1])
-                                break
-            del(casasComEnergia[0])
-            for m in casasComEnergia:
-                tota = m[1] + m[2]
-                tm = m[1] * 100
-                ntm = m[2] * 100
-                #print('{} {} {}'.format(tota, tm, ntm))
-                print(encontrarCidade(m[0], regioes) + ' ' + str(tm / tota) + '% possui energia, ' + str(ntm / tota) + '% não possui')
-
-            
+            energiaEmCasas(exemploPesquisa, regioes)
 
         # --------------------------------------------------------------------------------------------------------------
 
@@ -369,6 +212,41 @@ def main():
             exit()
 
     # __________________________________________________________________________________________________________________
+
+def energiaEmCasas(exemploPesquisa: list, regioes: list):
+    casasComEnergia = [['cidade', 'possuiEnergia', 'naoPossuiEnergia']]
+    for x in exemploPesquisa:
+        
+        cidade = x[1]
+        if x[11].isdecimal():
+            possuienergia = int(x[11])
+            for c in casasComEnergia:
+                if c[0] == cidade:
+                    if possuienergia == 1 or possuienergia == 2:
+                        c[1] += 1
+                        break
+                    elif possuienergia == 3:
+                        c[2] += 1
+                        break
+                else:
+                    if possuienergia == 1 or possuienergia == 2:
+                        casasComEnergia.append([cidade, 1, 0])
+                        break
+                    elif possuienergia == 3:
+                        casasComEnergia.append([cidade, 0, 1])
+                        break
+    del(casasComEnergia[0])
+    for m in casasComEnergia:
+        tota = m[1] + m[2]
+        tm = m[1] * 100
+        ntm = m[2] * 100
+        #print('{} {} {}'.format(tota, tm, ntm))
+        print(encontrarCidade(m[0], regioes) + ' ' + str(tm / tota) + '% possui energia, ' + str(ntm / tota) + '% não possui')
+
+
+
+
+
 
 def regiaoComMaisCidades(regioes: list, exemploPesquisa: list):
     norte = nordeste = centroOeste = sul = sudeste = nem = 0
@@ -436,6 +314,137 @@ def percentualPorCorOuRaca(exemploPesquisa: list):
     print(str(parda) + ' % parda')
     print(str(amarela) + ' % amarela')
     print(str(indigena) + ' % indigena')
+
+def formaMaisCommumAgua(exemploPesquisa: list, regioes: list):
+    aguaPorCidade = [['codigoDaCidade', 'REDE GERAL DE DISTRIBUIÇÃO', 'POÇO OU NASCENTE NA PROPRIEDADE', 
+        'POÇO OU NASCENTE FORA DA PROPRIEDADE', 'CARRO-PIPA', 'ÁGUA DA CHUVA ARMAZENADA EM CISTERNA', 
+        'ÁGUA DA CHUVA ARMAZENADA DE OUTRA FORMA', 'RIOS, AÇUDES, LAGOS E IGARAPÉS', 'OUTRA', 
+        ' POÇO OU NASCENTE NA ALDEIA', 'POÇO OU NASCENTE FORA DA ALDEIA']]
+    
+    for i in exemploPesquisa:
+
+        forma = i[9]
+        if forma.isdecimal():
+            forma = int(forma)
+            
+            cidade = i[1]
+            l = 0
+            max = len(aguaPorCidade)
+            #while l <= max:
+            for j in aguaPorCidade:
+                #  j = aguaPorCidade[l]
+                if j[0] == cidade:
+                    if forma == 1:
+                        j[forma] += 1
+                        break
+                    if forma == 2:
+                        j[forma] += 1
+                        break
+                    if forma == 3:
+                        j[forma] += 1
+                        break
+                    if forma == 4:
+                        j[forma] += 1
+                        break
+                    if forma == 5:
+                        j[forma] += 1
+                        break
+                    if forma == 6:
+                        j[forma] += 1
+                        break
+                    if forma == 7:
+                        fj[forma] += 1
+                        break
+                    if forma == 8:
+                        j[forma] += 1
+                        break
+                    if forma == 9:
+                        j[forma] += 1
+                        break
+                    if forma == 10:
+                        j[forma] += 1
+                        break
+                else:
+                    if forma == 1:
+                        aguaPorCidade.append([cidade, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                        break
+                    if forma == 2:
+                        aguaPorCidade.append([cidade, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0])
+                        break
+                    if forma == 3:
+                        aguaPorCidade.append([cidade, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
+                        break
+                    if forma == 4:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
+                        break
+                    if forma == 5:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0])
+                        break
+                    if forma == 6:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0])
+                        break
+                    if forma == 7:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
+                        break
+                    if forma == 8:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+                        break
+                    if forma == 9:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0])
+                        break
+                    if forma == 10:
+                        aguaPorCidade.append([cidade, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+                        break
+    
+    del(aguaPorCidade[0]) # o primeiro elemento nao e'util
+    for t in aguaPorCidade:
+        vmaior = t[1]
+        if t[2] > vmaior:
+            maior = 2
+        if t[3] > vmaior:
+            maior = 3
+        if t[4] > vmaior:
+            maior = 4
+        if t[5] > vmaior:
+            maior = 5
+        if t[6] > vmaior:
+            maior = 6
+        if t[7] > vmaior:
+            maior = 7
+        if t[8] > vmaior:
+            maior = 8
+        if t[9] > vmaior:
+            maior = 9
+        if t[10] > vmaior:
+            maior = 10
+
+        forma = maior
+
+        if forma == 1:
+            forma =  'REDE GERAL DE DISTRIBUIÇÃO'
+        if forma == 2:
+            forma =  'POÇO OU NASCENTE NA PROPRIEDADE'
+        if forma == 3:
+            forma =  'POÇO OU NASCENTE FORA DA PROPRIEDADE'
+        if forma == 4:
+            forma =  'CARRO-PIPA'
+        if forma == 5:
+            forma =  'ÁGUA DA CHUVA ARMAZENADA EM CISTERNA'
+        if forma == 6:
+            forma =  'ÁGUA DA CHUVA ARMAZENADA DE OUTRA FORMA'
+        if forma == 7:
+            forma =  'RIOS, AÇUDES, LAGOS E IGARAPÉS'
+        if forma == 8:
+            forma =  'OUTRA'
+        if forma == 9:
+            forma =  ' POÇO OU NASCENTE NA ALDEIA'
+        if forma == 10:
+            forma =  'POÇO OU NASCENTE FORA DA ALDEIA'
+        
+        g = encontrarCidade(t[0], regioes)
+#                print((g))
+        print(g + ': ' + forma)
+    
             
 
 main()

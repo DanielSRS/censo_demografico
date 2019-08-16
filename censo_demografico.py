@@ -334,6 +334,35 @@ def main():
         # --------------------------------------------------------------------------------------------------------------
         
         elif resposta == '5':
+            casasComEnergia = [['cidade', 'possuiEnergia', 'naoPossuiEnergia']]
+            for x in separarDados(exemploPesquisa):
+                
+                cidade = x[1]
+                if x[11].isdecimal():
+                    possuienergia = int(x[11])
+                    for c in casasComEnergia:
+                        if c[0] == cidade:
+                            if possuienergia == 1 or possuienergia == 2:
+                                c[1] += 1
+                                break
+                            elif possuienergia == 3:
+                                c[2] += 1
+                                break
+                        else:
+                            if possuienergia == 1 or possuienergia == 2:
+                                casasComEnergia.append([cidade, 1, 0])
+                                break
+                            elif possuienergia == 3:
+                                casasComEnergia.append([cidade, 0, 1])
+                                break
+            del(casasComEnergia[0])
+            for m in casasComEnergia:
+                tota = m[1] + m[2]
+                tm = m[1] * 100
+                ntm = m[2] * 100
+                #print('{} {} {}'.format(tota, tm, ntm))
+                print(encontrarCidade(m[0], regioes) + ' ' + str(tm / tota) + '% possui energia, ' + str(ntm / tota) + '% não possui')
+
             break
 
         # --------------------------------------------------------------------------------------------------------------
